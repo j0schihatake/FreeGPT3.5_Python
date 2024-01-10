@@ -2,11 +2,11 @@
 Альтернативный запуск в docker.
 
 
-Ссылка на оригинальный github: https://github.com/ChatTeach/FreeGPT
+Проект не сработал, github: https://github.com/ChatTeach/FreeGPT
 
-Ссылка на второй репозиторий: https://github.com/fantasy-peak/cpp-freegpt-webui
+Проект так-же не сработал: https://github.com/fantasy-peak/cpp-freegpt-webui
 
-Еще одна ссылка:
+Рабочий проект:
 https://github.com/xtekky/gpt4free
 
 Команды:
