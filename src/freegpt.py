@@ -19,31 +19,21 @@ class Message(BaseModel):
 
 @app.post("/chat")
 async def chat_completion(message: Message):
-    try:
-        response = g4f.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "system", "content": "You are a helpful assistant."},
-                      {"role": "user", "content": message.message}],
-            stream=True
-        )
-        result = ""
-        for message in response:
-            result += message['content']
-        return {"response": result}
-    except Exception as e:
-        print(f"Error processing chat_completion: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    # Print all available providers
+    print([
+        provider.__name__
+        for provider in g4f.Provider.__providers__
+        if provider.working
+    ])
 
-
-@app.post("/chat/alternative")
-async def alternative_chat_completion(message: Message):
-    try:
-        response = g4f.ChatCompletion.create(
-            model=g4f.models.gpt_4,
-            messages=[{"role": "system", "content": "You are a helpful assistant."},
-                      {"role": "user", "content": message.message}]
-        )
-        return {"response": response[0]['content']}
-    except Exception as e:
-        print(f"Error processing alternative_chat_completion: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    # Execute with a specific provider
+    response = g4f.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        provider=g4f.Provider.Aichat,
+        cookies={"a": "b"},
+        messages=[{"role": "user", "content": message.message}],
+        stream=True,
+    )
+    for message in response:
+        print(message)
+    return {"response": message}

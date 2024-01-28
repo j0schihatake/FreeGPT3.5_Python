@@ -58,13 +58,13 @@ RUN echo 'free-gpt-user:admin' | chpasswd
 RUN python3 -m pip install pydantic uvicorn[standard] fastapi
 
 # Download latest github/llama-cpp in llama.cpp directory and compile it
-RUN git clone https://github.com/xtekky/gpt4free.git ~/gpt4free && \
-    cd ~/gpt4free && \
-    git pull
+#RUN git clone https://github.com/xtekky/gpt4free.git ~/gpt4free && \
+#    cd ~/gpt4free && \
+#    git pull
 
 # Install Requirements for llama.cpp
-RUN cd ~/gpt4free && \
-    python3 -m pip install -r requirements.txt
+#RUN cd ~/gpt4free && \
+#    python3 -m pip install -r requirements.txt
 
 RUN python3 -m pip install -U g4f
 
